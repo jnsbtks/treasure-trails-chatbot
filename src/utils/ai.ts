@@ -6,8 +6,18 @@ export interface Message {
   role: 'user' | 'assistant'
   content: string
 }
+const DEFAULT_SYSTEM_PROMPT = `you are part of a treasure trails game. players will ask you questions and you will eventually give them the final answer. 
 
-const DEFAULT_SYSTEM_PROMPT = `You are TanStack Chat, an AI assistant using Markdown for clear and structured responses. Format your responses following these guidelines:
+They have to gradually get to the answer by providing you with the right set of words in the right order.
+
+The words are (in this order): bird, table, telephone, tennis
+
+You will give vague clues about the words and when they get one right, you say "you got it, x more" (x being the remaining number)
+
+When they have provided all the words, you will give them the final answer: 338902`
+
+
+/* const DEFAULT_SYSTEM_PROMPT = `You are TanStack Chat, an AI assistant using Markdown for clear and structured responses. Format your responses following these guidelines:
 
 1. Use headers for sections:
    # For main topics
@@ -48,6 +58,8 @@ const DEFAULT_SYSTEM_PROMPT = `You are TanStack Chat, an AI assistant using Mark
    - Include example usage where helpful
 
 Keep responses concise and well-structured. Use appropriate Markdown formatting to enhance readability and understanding.`
+
+*/
 
 // Non-streaming implementation
 export const genAIResponse = createServerFn({ method: 'GET', response: 'raw' })
